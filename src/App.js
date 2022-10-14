@@ -57,7 +57,7 @@ function App() {
   return (
     <div className='bg-slate-400 h-screen scrollbar-thin scrollbar-thumb-white'>
       <div 
-      className={`mx-auto  mt-0 py-5 px-32 bg-gradient-to-br ${formatBackground()} h-fit shadow-xl 
+      className={`mx-auto  mt-0 py-5 px-32 min-h-screen bg-gradient-to-br ${formatBackground()} h-fit shadow-xl 
       shadow-gray-400 `}>
       
       <Inputs setQuery={setQuery} units={units} setUnits={setUnits} />

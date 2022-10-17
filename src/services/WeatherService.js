@@ -1,6 +1,5 @@
 import {DateTime} from "luxon"
-
-const API_KEY = "73cd4cb84db2b5c6931347ee390cbee1"
+const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
 const BASE_URL = "https://api.openweathermap.org/data/2.5";
 
 // https://api.openweathermap.org/data/2.5/onecall?lat=52.5244&lon=13.4105&exclude=current%2C+minutely%2C+alerts&units=metric&appid=73cd4cb84db2b5c6931347ee390cbee1

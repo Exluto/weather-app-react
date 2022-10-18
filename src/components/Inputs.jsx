@@ -10,11 +10,11 @@ function Inputs({ setQuery, units, setUnits }) {
   const handleUnitsChange = (e) => {
     const selectedUnit = e.target.checked ? 'imperial': 'metric';
     setUnits(selectedUnit)
-    console.log(e)
   }
 
   const handleSearchClick = () => {
     if(city !== '') setQuery({q: city})
+    setCity('')
   }
 
   const handleLocationClick = () => {
@@ -35,6 +35,7 @@ function Inputs({ setQuery, units, setUnits }) {
  const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       if(city !== '') setQuery({q: city})
+      setCity('')
     }
 }
 
@@ -52,7 +53,7 @@ function Inputs({ setQuery, units, setUnits }) {
           <UilSearch 
             size={25} 
             className='text-white cursor-pointer transition ease-out hover:scale-125' 
-            onMouseEnter={handleUnitsChange}
+            onClick={handleSearchClick}
           />
           <UilLocationPoint 
             size={25} 

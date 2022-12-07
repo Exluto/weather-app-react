@@ -9,6 +9,7 @@ function Inputs({ setQuery, units, setUnits }) {
 
   const [city, setCity] = useState("")
   const [ cityList, setCityList] = useState([])
+  localStorage.setItem('cityList', JSON.stringify(cityList))
 
   const handleUnitsChange = (e) => {
     const selectedUnit = e.target.checked ? 'imperial': 'metric'
@@ -16,16 +17,19 @@ function Inputs({ setQuery, units, setUnits }) {
   }
 
   const SaveSearches = () => {
-    const items = cityList
+    const items = cityList //localStorage.getItem('cityList')
       if(city !== '' && cityList.length < 5 ) {
-        setCityList([...items, `${city}` ])
+        setCityList([...items, `${city}`])
+       // localStorage.setItem('cityList', JSON.stringify(cityList))
 
       } else if(city !== '' && cityList.length == 5) {
         const firstIndex = 0
         setCityList(items.filter((item, index) => index !== firstIndex))
+       // localStorage.setItem('cityList', JSON.stringify(cityList))
       }
 
       console.log(cityList)
+      //console.log('items', JSON.parse(items))
   }
   <Cities.Provider value={cityList}></Cities.Provider>
   const handleSearchClick = () => {

@@ -3,15 +3,31 @@ import { UilSearch, UilLocationPoint } from '@iconscout/react-unicons'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
+
+
 function Inputs({ setQuery, units, setUnits }) {
 
   const [city, setCity] = useState("")
+  const [ cityList, setCityList] = useState([])
 
   const handleUnitsChange = (e) => {
-    const selectedUnit = e.target.checked ? 'imperial': 'metric';
+    const selectedUnit = e.target.checked ? 'imperial': 'metric'
     setUnits(selectedUnit)
   }
 
+  const SaveSearches = () => {
+    const items = cityList
+      if(city !== '' && cityList.length < 5 ) {
+        setCityList([...items, `${city}` ])
+
+      } else if(city !== '' && cityList.length == 5) {
+        const firstIndex = 0
+        setCityList(items.filter((item, index) => index !== firstIndex))
+      }
+
+      console.log(cityList)
+  }
+  <Cities.Provider value={cityList}></Cities.Provider>
   const handleSearchClick = () => {
     if(city !== '') setQuery({q: city})
     setCity('')
@@ -53,12 +69,18 @@ function Inputs({ setQuery, units, setUnits }) {
           <UilSearch 
             size={25} 
             className='text-white cursor-pointer transition ease-out hover:scale-125' 
-            onClick={handleSearchClick}
+            onClick={() => {
+              handleSearchClick()
+              SaveSearches()
+            }}
           />
           <UilLocationPoint 
             size={25} 
             className='text-white cursor-pointer transition ease-out hover:scale-125' 
-            onClick={handleLocationClick}
+            onClick={() => {
+              handleLocationClick()
+              SaveSearches()
+            }}
           />
       </div>
         <div className='flex flex-row w-1/12 items-center justify-center'>
@@ -79,3 +101,4 @@ function Inputs({ setQuery, units, setUnits }) {
 }
 
 export default Inputs
+export const Cities = React.createContext()
